@@ -94,7 +94,7 @@ public class InterFaceManager {
         }
     }
 
-    protected synchronized void registerInterface(String cmdType, IGetDataCallBack.GetDataCallBack callBack){
+    public synchronized void registerInterface(String cmdType, IGetDataCallBack.GetDataCallBack callBack){
         List<FTTRData> dataList = new ArrayList<>();
         mData.put(cmdType,dataList);
         mListen.put(cmdType,callBack);
