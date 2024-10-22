@@ -1,7 +1,7 @@
 ext {
     versionControl = [
-            versionCode: 8,
-            versonName : "0.0.8"
+            versionCode: 9,
+            versonName : "0.0.9"
     ]
 
     android = [

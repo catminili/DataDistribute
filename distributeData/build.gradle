@@ -46,23 +46,23 @@ dependencies {
     implementation 'com.alibaba:fastjson:1.2.31'
 }
 
-//afterEvaluate {
-//    publishing {
-//        publications {
-//            maven(MavenPublication) {
-//                from components.release
-//                groupId = 'com.github.catminili'
-//                artifactId = 'DataDistribute'
-//                version = '0.0.5'
-//            }
-//        }
-//    }
-//}
-
-task makeAAR(type: Copy) {
-    from('build/outputs/aar/')
-    into('build/aarFloder/')
-    include('distributeData-release.aar')
-    rename ('distributeData-release.aar', 'distributeData-' + rootProject.ext.versionControl.versonName + '.aar' )
+afterEvaluate {
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                from components.release
+                groupId = 'com.github.catminili'
+                artifactId = 'DataDistribute'
+                version = '0.0.9'
+            }
+        }
+    }
 }
-makeAAR.dependsOn(build)
+
+//task makeAAR(type: Copy) {
+//    from('build/outputs/aar/')
+//    into('build/aarFloder/')
+//    include('distributeData-release.aar')
+//    rename ('distributeData-release.aar', 'distributeData-' + rootProject.ext.versionControl.versonName + '.aar' )
+//}
+//makeAAR.dependsOn(build)
