@@ -1,6 +1,5 @@
 plugins {
     id 'com.android.library'
-    id 'maven-publish'
 }
 
 android {
@@ -46,18 +45,18 @@ dependencies {
     implementation 'com.alibaba:fastjson:1.2.31'
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            maven(MavenPublication) {
-                from components.release
-                groupId = 'com.github.catminili'
-                artifactId = 'DataDistribute'
-                version = '0.0.9'
-            }
-        }
-    }
-}
+//afterEvaluate {
+//    publishing {
+//        publications {
+//            maven(MavenPublication) {
+//                from components.release
+//                groupId = 'com.github.catminili'
+//                artifactId = 'DataDistribute'
+//                version = '0.0.9'
+//            }
+//        }
+//    }
+//}
 
 //task makeAAR(type: Copy) {
 //    from('build/outputs/aar/')
