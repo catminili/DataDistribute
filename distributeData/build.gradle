@@ -4,14 +4,13 @@ plugins {
 
 android {
     namespace 'com.yhp.distributedata'
-    compileSdk 34
+    compileSdk rootProject.ext.android.compileSdkVersion
 
     defaultConfig {
-        minSdk 24
-        targetSdk 34
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.versionControl.versionCode
+        versionName rootProject.ext.versionControl.versonName
     }
 
     buildTypes {
@@ -28,11 +27,19 @@ android {
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'com.google.android.material:material:1.6.1'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     implementation 'com.alibaba:fastjson:1.2.31'
 }
+
+task makeAAR(type: Copy) {
+    from('build/outputs/aar/')
+    into('build/aarFloder/')
+    include('distributeData-release.aar')
+    rename ('distributeData-release.aar', 'distributeData-' + rootProject.ext.versionControl.versonName + '.aar' )
+}
+makeAAR.dependsOn(build)
