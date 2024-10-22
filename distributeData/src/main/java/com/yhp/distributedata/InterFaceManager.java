@@ -24,13 +24,14 @@ public class InterFaceManager {
         return InterFaceManagerInstance.INSTANCE;
     }
 
-    public synchronized void registerInterface(String cmdType, IGetDataCallBack.GetDataCallBack callBack){
+    protected synchronized void registerInterface(String cmdType, IGetDataCallBack.GetDataCallBack callBack){
         List<FTTRData> dataList = new ArrayList<>();
         mData.put(cmdType,dataList);
         mListen.put(cmdType,callBack);
+        mListen.get(cmdType).sessionTokenCallBack("bbbb");
     }
 
-    public synchronized void callBack(String cmdType,FTTRData fttrData){
+    public synchronized void sendData(String cmdType,FTTRData fttrData){
         if (!mData.keySet().contains(cmdType)){
             Log.d("InterFaceManager", "getData:  "+ cmdType +"UnRegister");
             return;
@@ -39,7 +40,8 @@ public class InterFaceManager {
             Log.d("InterFaceManager", "getData:  "+ cmdType +"UnRegister");
             return;
         }
-        mListen.get(cmdType).getDataCallBack(fttrData);
+        mListen.get(cmdType).dataCallBack(fttrData);
     }
+
 
 }
