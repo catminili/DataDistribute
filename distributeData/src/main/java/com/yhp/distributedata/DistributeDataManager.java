@@ -157,8 +157,10 @@ public class DistributeDataManager {
             mDataCallBackMap.put(iotCmdType, callBack);
 //            mCallBack.put(iotCmdType).sessionTokenCallBack(SESSION_TOKEN);
             mReceiveDataMap.put(iotCmdType,new ConcurrentLinkedQueue<>());
-            mReceiveDataThreadMap.put(iotCmdType,new FttrDataThread(mDataCallBackMap.get(iotCmdType),mReceiveDataMap.get(iotCmdType)));
+            FttrDataThread fttrDataThread = new FttrDataThread(mDataCallBackMap.get(iotCmdType), mReceiveDataMap.get(iotCmdType));
+            mReceiveDataThreadMap.put(iotCmdType,fttrDataThread);
             mReceiveDataLockMap.put(iotCmdType,new Object());
+            fttrDataThread.start();
 //            registerGetDataTask(iotCmdType);
         }
     }
